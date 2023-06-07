@@ -10,12 +10,23 @@ using UnityEngine.UI;
 public class PlayersBasket : MonoBehaviour, IFruitDisabler
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private ImportantSceneObjects _importantSceneObjects;
         
     private int _fruitsCollectedAmount = 0;
 
     public int FruitsCollectedAmount => _fruitsCollectedAmount;
     
     public event UnityAction FruitCollected;
+
+    private void OnEnable()
+    {
+        _importantSceneObjects.PlayerData.DataLoaded += SetLoadedSprite;
+    }
+
+    private void OnDisable()
+    {
+        _importantSceneObjects.PlayerData.DataLoaded -= SetLoadedSprite;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -36,5 +47,10 @@ public class PlayersBasket : MonoBehaviour, IFruitDisabler
     public void SetBasketSprite(Sprite sprite)
     {
         _spriteRenderer.sprite = sprite;
+    }
+
+    private void SetLoadedSprite()
+    {
+        _spriteRenderer.sprite = _importantSceneObjects.PlayerData.CurrentBasketSprite;
     }
 }

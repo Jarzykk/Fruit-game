@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-public class ShopItemTemplate : MonoBehaviour
+public class ShopBasketItemTemplate : MonoBehaviour
 {
     [SerializeField] private TMP_Text _titleText;
     [SerializeField] private TMP_Text _priceText;
@@ -17,7 +17,7 @@ public class ShopItemTemplate : MonoBehaviour
     public int Price => _price;
     public Sprite Sprite => _image.sprite;
 
-    public event UnityAction<ShopItemTemplate> BuyButtonPressed;
+    public event UnityAction<ShopBasketItemTemplate> BuyButtonPressed;
 
     private void OnEnable()
     {

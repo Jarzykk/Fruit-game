@@ -17,11 +17,13 @@ public class PlayersMoney : MonoBehaviour
     private void OnEnable()
     {
         _importantSceneObjects.Timer.TimerStopped += OnGameTimerStopped;
+        _importantSceneObjects.PlayerData.DataLoaded += SetMoney;
     }
 
     private void OnDisable()
     {
         _importantSceneObjects.Timer.TimerStopped -= OnGameTimerStopped;
+        _importantSceneObjects.PlayerData.DataLoaded -= SetMoney;
     }
 
     public void AddMoney(int amount)
@@ -47,5 +49,10 @@ public class PlayersMoney : MonoBehaviour
     private void OnGameTimerStopped()
     {
         AddMoney(_importantSceneObjects.PlayersBasket.FruitsCollectedAmount);
+    }
+
+    private void SetMoney()
+    {
+        _moneyAmount = _importantSceneObjects.PlayerData.PlayersMoney;
     }
 }

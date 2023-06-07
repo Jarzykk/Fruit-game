@@ -4,18 +4,20 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class ShopManager : ShopScreen
 {
     [SerializeField] private ShopScriptableObject[] _itemsToSell;
-    [SerializeField] private ShopItemTemplate _shopItemTemplate;
+    [FormerlySerializedAs("shopBasketItemTemplate")] [SerializeField] private ShopBasketItemTemplate shopShopBasketItemTemplate;
     [SerializeField] private Transform _conteiner;
     [SerializeField] private ImportantSceneObjects _importantSceneObjects;
     [SerializeField] private TMP_Text _playerMoneyText;
     
-    private ShopItemTemplate[] _shopItems;
+    private ShopBasketItemTemplate[] _shopItems;
 
-    public event UnityAction<Sprite> Purchased;
+    public event UnityAction<Sprite> ItemPurchased;
+    public event UnityAction Purchased;
 
     private void Awake()
     {
@@ -39,11 +41,11 @@ public class ShopManager : ShopScreen
 
     private void LoadItems()
     {
-        _shopItems = new ShopItemTemplate[_itemsToSell.Length];
+        _shopItems = new ShopBasketItemTemplate[_itemsToSell.Length];
         
         for (int i = 0; i < _itemsToSell.Length; i++)
         {
-            _shopItems[i] = Instantiate(_shopItemTemplate, _conteiner);
+            _shopItems[i] = Instantiate(shopShopBasketItemTemplate, _conteiner);
             _shopItems[i].SetValues(_itemsToSell[i].Title, _itemsToSell[i].Price, _itemsToSell[i].Sprite);
         }
     }
@@ -80,14 +82,15 @@ public class ShopManager : ShopScreen
         _playerMoneyText.text = money.ToString();
     }
 
-    private void OnBuyButtonPressed(ShopItemTemplate shopItem)
+    private void OnBuyButtonPressed(ShopBasketItemTemplate shopShopBasketItem)
     {
-        if (_importantSceneObjects.PlayersMoney.TryTakeMoney(shopItem.Price))
+        if (_importantSceneObjects.PlayersMoney.TryTakeMoney(shopShopBasketItem.Price))
         {
             Debug.Log("Purchased");
             SetBuyButtonsInteractability();
-            Purchased?.Invoke(shopItem.Sprite);
+            ItemPurchased?.Invoke(shopShopBasketItem.Sprite);
+            Purchased?.Invoke();
         }
-        Debug.Log($"Shop item's price: {shopItem.Price}");
+        Debug.Log($"Shop item's price: {shopShopBasketItem.Price}");
     }
 }
