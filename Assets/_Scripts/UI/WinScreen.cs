@@ -52,7 +52,7 @@ public class WinScreen : UIScreen
 
     private void SetMoneyAmount()
     {
-        _moneyEarnedText.text = $"Money collected: {_sceneUI.ImportantSceneObjects.PlayersBusket.FruitsCollectedAmount.ToString()}";
+        _moneyEarnedText.text = $"Money collected: {_sceneUI.ImportantSceneObjects.PlayersBasket.FruitsCollectedAmount.ToString()}";
         _totalMoneyAmount.text = $"Total money: {_sceneUI.ImportantSceneObjects.PlayersMoney.MoneyAmount}";
     }
 }

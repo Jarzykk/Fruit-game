@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
-public class PlayersBusket : MonoBehaviour, IFruitDisabler
+public class PlayersBasket : MonoBehaviour, IFruitDisabler
 {
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+        
     private int _fruitsCollectedAmount = 0;
 
     public int FruitsCollectedAmount => _fruitsCollectedAmount;
@@ -27,5 +31,10 @@ public class PlayersBusket : MonoBehaviour, IFruitDisabler
     {
         FruitCollected?.Invoke();
         fruit.DisableFruit();
+    }
+
+    public void SetBasketSprite(Sprite sprite)
+    {
+        _spriteRenderer.sprite = sprite;
     }
 }

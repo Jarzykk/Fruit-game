@@ -1,14 +1,17 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ImportantSceneObjects : MonoBehaviour
 {
     [SerializeField] private SwipeControlls _swipeControlls;
-    [SerializeField] private PlayersBusket _playersBusket;
+    [SerializeField] private PlayersBasket playersBasket;
     [SerializeField] private Timer _timer;
     [SerializeField] private PlayersMoney _playersMoney;
+    [SerializeField] private ShopManager _shopManager;
 
     public SwipeControlls SwipeControlls => _swipeControlls;
-    public PlayersBusket PlayersBusket => _playersBusket;
+    public PlayersBasket PlayersBasket => playersBasket;
     public Timer Timer => _timer;
     public PlayersMoney PlayersMoney => _playersMoney;
+    public ShopManager ShopManager => _shopManager;
 }

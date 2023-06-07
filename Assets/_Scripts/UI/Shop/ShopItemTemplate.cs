@@ -15,6 +15,7 @@ public class ShopItemTemplate : MonoBehaviour
     private int _price;
 
     public int Price => _price;
+    public Sprite Sprite => _image.sprite;
 
     public event UnityAction<ShopItemTemplate> BuyButtonPressed;
 

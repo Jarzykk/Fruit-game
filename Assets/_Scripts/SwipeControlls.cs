@@ -13,7 +13,7 @@ public class SwipeControlls : MonoBehaviour
     
     private bool _controllsEnabled = true;
 
-    private PlayersBusket _selectedPlayersBusket;
+    private PlayersBasket _selectedPlayersBasket;
 
     public event UnityAction SwipeStartedOnBasket;
     public event UnityAction SwipeCanseled;
@@ -44,7 +44,7 @@ public class SwipeControlls : MonoBehaviour
         
         TrySetPlayerBusket(_swipeListener.SwipeStartPoint);
 
-        if(_selectedPlayersBusket != null)
+        if(_selectedPlayersBasket != null)
         {
             switch (swipeDirection)
             {
@@ -65,9 +65,9 @@ public class SwipeControlls : MonoBehaviour
 
         foreach (var hit in hitInfo)
         {
-            if(hit.collider.TryGetComponent<PlayersBusket>(out PlayersBusket playersBusket))
+            if(hit.collider.TryGetComponent<PlayersBasket>(out PlayersBasket playersBusket))
             {
-                _selectedPlayersBusket = playersBusket;
+                _selectedPlayersBasket = playersBusket;
                 SwipeStartedOnBasket?.Invoke();
                 Debug.Log("Basket is chosen");
                 break;
@@ -79,7 +79,7 @@ public class SwipeControlls : MonoBehaviour
     {
         SwipeCanseled?.Invoke();
         Debug.Log("Basket realised");
-        _selectedPlayersBusket = null;
+        _selectedPlayersBasket = null;
     }
 
     private void DisableControlls()

@@ -46,6 +46,6 @@ public class PlayersMoney : MonoBehaviour
 
     private void OnGameTimerStopped()
     {
-        AddMoney(_importantSceneObjects.PlayersBusket.FruitsCollectedAmount);
+        AddMoney(_importantSceneObjects.PlayersBasket.FruitsCollectedAmount);
     }
 }

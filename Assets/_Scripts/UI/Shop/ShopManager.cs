@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShopManager : ShopScreen
 {
@@ -13,6 +14,8 @@ public class ShopManager : ShopScreen
     [SerializeField] private TMP_Text _playerMoneyText;
     
     private ShopItemTemplate[] _shopItems;
+
+    public event UnityAction<Sprite> Purchased;
 
     private void Awake()
     {
@@ -83,6 +86,7 @@ public class ShopManager : ShopScreen
         {
             Debug.Log("Purchased");
             SetBuyButtonsInteractability();
+            Purchased?.Invoke(shopItem.Sprite);
         }
         Debug.Log($"Shop item's price: {shopItem.Price}");
     }
