@@ -20,7 +20,7 @@ public class Fruit : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         SetDataFromFruitObject(GetRandomFruitObject());
     }
