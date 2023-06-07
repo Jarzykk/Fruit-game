@@ -21,7 +21,8 @@ public class PlayerData : MonoBehaviour
 
     public int PlayersMoney => _playersMoney;
     public Sprite CurrentBasketSprite => _currentBasketBasketSprite;
-    
+    public List<Sprite> PurchasedSprites => _purchasedSprites;
+
     public event UnityAction DataLoaded;
 
     private void OnEnable()
