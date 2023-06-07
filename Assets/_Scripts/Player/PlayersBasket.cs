@@ -13,6 +13,7 @@ public class PlayersBasket : MonoBehaviour, IFruitDisabler
     [SerializeField] private ImportantSceneObjects _importantSceneObjects;
         
     private int _fruitsCollectedAmount = 0;
+    private bool _canCollect = true;
 
     public int FruitsCollectedAmount => _fruitsCollectedAmount;
     
@@ -22,18 +23,23 @@ public class PlayersBasket : MonoBehaviour, IFruitDisabler
     {
         _importantSceneObjects.PlayerData.DataLoaded += SetLoadedSprite;
         _importantSceneObjects.PlayerData.CurrentSpriteChanged += SetBasketSprite;
+        _importantSceneObjects.Timer.TimerStopped += OnTimerStopped;
     }
 
     private void OnDisable()
     {
         _importantSceneObjects.PlayerData.DataLoaded -= SetLoadedSprite;
         _importantSceneObjects.PlayerData.CurrentSpriteChanged -= SetBasketSprite;
+        _importantSceneObjects.Timer.TimerStopped -= OnTimerStopped;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out Fruit fruit))
         {
+            if(_canCollect == false)
+                return;
+            
             _fruitsCollectedAmount++;
             FruitCollected?.Invoke();
             DisableFruit(fruit);
@@ -54,5 +60,10 @@ public class PlayersBasket : MonoBehaviour, IFruitDisabler
     private void SetLoadedSprite()
     {
         _spriteRenderer.sprite = _importantSceneObjects.PlayerData.CurrentBasketSprite;
+    }
+
+    private void OnTimerStopped()
+    {
+        _canCollect = false;
     }
 }

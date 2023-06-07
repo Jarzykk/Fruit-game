@@ -12,7 +12,6 @@ public class ShopManager : ShopScreen
     [FormerlySerializedAs("shopBasketItemTemplate")] [SerializeField] private ShopBasketItemTemplate shopShopBasketItemTemplate;
     [SerializeField] private Transform _conteiner;
     [SerializeField] private ImportantSceneObjects _importantSceneObjects;
-    [SerializeField] private TMP_Text _playerMoneyText;
     
     private ShopBasketItemTemplate[] _shopItems;
 
@@ -28,14 +27,10 @@ public class ShopManager : ShopScreen
     private void OnEnable()
     {
         SubscribeToItemsBuyButton();
-        _importantSceneObjects.PlayersMoney.MoneyAmountChanged += SetPlayersMoney;
-        
-        SetPlayersMoney(_importantSceneObjects.PlayersMoney.MoneyAmount);
     }
 
     private void OnDisable()
     {
-        _importantSceneObjects.PlayersMoney.MoneyAmountChanged += SetPlayersMoney;
         UnsubscribeFromItemsBuyButton();
     }
 
@@ -75,11 +70,6 @@ public class ShopManager : ShopScreen
             else
                 shopItem.SetBuyButtonInteractability(true);
         }
-    }
-
-    private void SetPlayersMoney(int money)
-    {
-        _playerMoneyText.text = money.ToString();
     }
 
     private void OnBuyButtonPressed(ShopBasketItemTemplate shopShopBasketItem)
