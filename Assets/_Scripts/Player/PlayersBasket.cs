@@ -21,11 +21,13 @@ public class PlayersBasket : MonoBehaviour, IFruitDisabler
     private void OnEnable()
     {
         _importantSceneObjects.PlayerData.DataLoaded += SetLoadedSprite;
+        _importantSceneObjects.PlayerData.CurrentSpriteChanged += SetBasketSprite;
     }
 
     private void OnDisable()
     {
         _importantSceneObjects.PlayerData.DataLoaded -= SetLoadedSprite;
+        _importantSceneObjects.PlayerData.CurrentSpriteChanged -= SetBasketSprite;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

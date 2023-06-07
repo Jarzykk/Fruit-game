@@ -24,12 +24,14 @@ public class PlayerData : MonoBehaviour
     public List<Sprite> PurchasedSprites => _purchasedSprites;
 
     public event UnityAction DataLoaded;
+    public event UnityAction<Sprite> CurrentSpriteChanged;
 
     private void OnEnable()
     {
         _importantSceneObjects.ShopManager.ItemPurchased += AddItemPurchasedBasketItem;
         _importantSceneObjects.Timer.TimerStopped += SavePlayerMoney;
         _importantSceneObjects.ShopManager.Purchased += SavePlayerMoney;
+        _importantSceneObjects.Inventory.EquipButtonPressed += ChageCurrentSprite;
     }
 
     private void OnDisable()
@@ -37,6 +39,7 @@ public class PlayerData : MonoBehaviour
         _importantSceneObjects.ShopManager.ItemPurchased -= AddItemPurchasedBasketItem;
         _importantSceneObjects.Timer.TimerStopped -= SavePlayerMoney;
         _importantSceneObjects.ShopManager.Purchased -= SavePlayerMoney;
+        _importantSceneObjects.Inventory.EquipButtonPressed -= ChageCurrentSprite;
     }
 
     private void Start()
@@ -58,7 +61,7 @@ public class PlayerData : MonoBehaviour
         if (itemDuplicate == false)
         {
             _purchasedSprites.Add(sprite);
-            _currentBasketBasketSprite = sprite;
+            ChageCurrentSprite(sprite);
             Save();
             Debug.Log("Added new sprite");
         }
@@ -104,6 +107,13 @@ public class PlayerData : MonoBehaviour
     private void Save()
     {
         SaveSystem.Save(_saveKey, GetSaveSnapshot());
+    }
+
+    private void ChageCurrentSprite(Sprite sprite)
+    {
+        _currentBasketBasketSprite = sprite;
+        
+        CurrentSpriteChanged?.Invoke(sprite);
     }
 
     private PlayerDataSave GetSaveSnapshot()

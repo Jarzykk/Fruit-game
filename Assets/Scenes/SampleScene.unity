@@ -3695,7 +3695,7 @@ MonoBehaviour:
   _playersMoney: {fileID: 387851973}
   _shopManager: {fileID: 2005670948}
   _playerData: {fileID: 702056593}
-  _inventory: {fileID: 0}
+  _inventory: {fileID: 1727971532}
 --- !u!1 &2075014738
 GameObject:
   m_ObjectHideFlags: 0
