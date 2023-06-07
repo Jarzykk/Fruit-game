@@ -32,8 +32,6 @@ public class BasketMovement : MonoBehaviour
     {
         if(_isMoving)
             Move();
-        
-        Debug.Log(_mainCamera.ScreenToWorldPoint(Input.mousePosition));
     }
 
     private void OnSwipeStarted()

@@ -7,6 +7,7 @@ using UnityEngine;
 public class SwipeControlls : MonoBehaviour
 {
     [SerializeField] private SwipeListener _swipeListener;
+    [SerializeField] private ImportantSceneObjects _importantSceneObjects;
     
     private Camera _mainCamera;
     
@@ -22,6 +23,8 @@ public class SwipeControlls : MonoBehaviour
         _swipeListener.OnSwipe.AddListener(OnSwipe);
         _swipeListener.OnSwipeCancelled.AddListener(OnSwipeCanseled);
 
+        _importantSceneObjects.Timer.TimerStopped += DisableControlls;
+
         _mainCamera = Camera.main;
     }
 
@@ -29,6 +32,9 @@ public class SwipeControlls : MonoBehaviour
     {
         _swipeListener.OnSwipe.RemoveListener(OnSwipe);
         _swipeListener.OnSwipeCancelled.RemoveListener(OnSwipeCanseled);
+        
+        _importantSceneObjects.Timer.TimerStopped += DisableControlls;
+        
     }
 
     private void OnSwipe(string swipeDirection)
@@ -79,5 +85,6 @@ public class SwipeControlls : MonoBehaviour
     private void DisableControlls()
     {
         _controllsEnabled = false;
+        SwipeCanseled?.Invoke();
     }
 }

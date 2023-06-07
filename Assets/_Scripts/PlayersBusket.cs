@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayersBusket : MonoBehaviour, IFruitDisabler
 {
-    private int _fruitsCollected = 0;
+    private int _fruitsCollectedAmount = 0;
+
+    public int FruitsCollectedAmount => _fruitsCollectedAmount;
     
     public event UnityAction FruitCollected;
 
@@ -14,7 +17,7 @@ public class PlayersBusket : MonoBehaviour, IFruitDisabler
     {
         if (other.TryGetComponent(out Fruit fruit))
         {
-            _fruitsCollected++;
+            _fruitsCollectedAmount++;
             FruitCollected?.Invoke();
             DisableFruit(fruit);
         }
