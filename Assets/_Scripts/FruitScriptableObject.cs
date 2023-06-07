@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Fruit", menuName = "Fruits/Fruit", order = 51)]
-public class FruitObject : ScriptableObject
+[CreateAssetMenu(fileName = "Fruit", menuName = "ScriptableObjects/Fruit", order = 51)]
+public class FruitScriptableObject : ScriptableObject
 {
     [SerializeField] private string _name;
     [SerializeField] private float _speed;

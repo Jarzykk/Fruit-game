@@ -13,7 +13,6 @@ public class WinScreen : UIScreen
     [SerializeField] private Button _shopButton;
     [SerializeField] private TMP_Text _moneyEarnedText;
     [SerializeField] private SceneUI _sceneUI;
-
     public event UnityAction ShopButtonPressed;
     public event UnityAction NextSceneButtonPressed;
 

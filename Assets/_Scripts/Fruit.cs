@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Fruit : MonoBehaviour
 {
-    [SerializeField] private FruitObject[] _fruitObjects;
+    [SerializeField] private FruitScriptableObject[] _fruitObjects;
 
     private string _name;
     private float _speed;
@@ -25,18 +25,18 @@ public class Fruit : MonoBehaviour
         SetDataFromFruitObject(GetRandomFruitObject());
     }
 
-    private FruitObject GetRandomFruitObject()
+    private FruitScriptableObject GetRandomFruitObject()
     {
         int randomIndex = Random.Range(0, _fruitObjects.Length);
 
         return _fruitObjects[randomIndex];
     }
 
-    private void SetDataFromFruitObject(FruitObject fruitObject)
+    private void SetDataFromFruitObject(FruitScriptableObject fruitScriptableObject)
     {
-        _name = fruitObject.Name;
-        _speed = fruitObject.Speed;
-        _spriteRenderer.sprite = fruitObject.Sprite;
+        _name = fruitScriptableObject.Name;
+        _speed = fruitScriptableObject.Speed;
+        _spriteRenderer.sprite = fruitScriptableObject.Sprite;
     }
 
     public void DisableFruit()
