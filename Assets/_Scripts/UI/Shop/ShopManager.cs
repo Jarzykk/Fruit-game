@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ShopManager : MonoBehaviour
+public class ShopManager : ShopScreen
 {
     [SerializeField] private ShopScriptableObject[] _itemsToSell;
     [SerializeField] private ShopItemTemplate _shopItemTemplate;
