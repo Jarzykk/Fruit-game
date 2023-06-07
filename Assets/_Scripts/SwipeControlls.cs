@@ -69,7 +69,6 @@ public class SwipeControlls : MonoBehaviour
             {
                 _selectedPlayersBasket = playersBusket;
                 SwipeStartedOnBasket?.Invoke();
-                Debug.Log("Basket is chosen");
                 break;
             }
         }
@@ -78,7 +77,6 @@ public class SwipeControlls : MonoBehaviour
     private void OnSwipeCanseled()
     {
         SwipeCanseled?.Invoke();
-        Debug.Log("Basket realised");
         _selectedPlayersBasket = null;
     }
 

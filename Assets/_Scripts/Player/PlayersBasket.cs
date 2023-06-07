@@ -65,7 +65,6 @@ public class PlayersBasket : MonoBehaviour, IFruitDisabler
     private void SetLoadedSprite()
     {
         _spriteRenderer.sprite = _importantSceneObjects.PlayerData.CurrentBasketSprite;
-        Debug.Log("SetLoaded");
     }
 
     private void OnTimerStopped()

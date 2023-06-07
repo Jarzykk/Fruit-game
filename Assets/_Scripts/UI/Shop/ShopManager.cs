@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class ShopManager : ShopScreen
 {
@@ -12,26 +13,32 @@ public class ShopManager : ShopScreen
     [FormerlySerializedAs("shopBasketItemTemplate")] [SerializeField] private ShopBasketItemTemplate shopShopBasketItemTemplate;
     [SerializeField] private Transform _conteiner;
     [SerializeField] private ImportantSceneObjects _importantSceneObjects;
+    [FormerlySerializedAs("LoadNextSceneButton")] [SerializeField] private Button _loadNextSceneButton;
     
     private ShopBasketItemTemplate[] _shopItems;
 
     public event UnityAction<Sprite> ItemPurchased;
     public event UnityAction Purchased;
+    public event UnityAction LoadNextSceneButtonPressed;
 
     private void Awake()
     {
         LoadItems();
-        SetBuyButtonsInteractability();
     }
 
     private void OnEnable()
     {
         SubscribeToItemsBuyButton();
+        SetBuyButtonsInteractability();
+        
+        _loadNextSceneButton.onClick.AddListener(OnLoadNextSceneButtonPressed);
     }
 
     private void OnDisable()
     {
         UnsubscribeFromItemsBuyButton();
+        
+        _loadNextSceneButton.onClick.RemoveListener(OnLoadNextSceneButtonPressed);
     }
 
     private void LoadItems()
@@ -72,15 +79,18 @@ public class ShopManager : ShopScreen
         }
     }
 
+    private void OnLoadNextSceneButtonPressed()
+    {
+        LoadNextSceneButtonPressed?.Invoke();
+    }
+
     private void OnBuyButtonPressed(ShopBasketItemTemplate shopShopBasketItem)
     {
         if (_importantSceneObjects.PlayersMoney.TryTakeMoney(shopShopBasketItem.Price))
         {
-            Debug.Log("Purchased");
             SetBuyButtonsInteractability();
             ItemPurchased?.Invoke(shopShopBasketItem.Sprite);
             Purchased?.Invoke();
         }
-        Debug.Log($"Shop item's price: {shopShopBasketItem.Price}");
     }
 }

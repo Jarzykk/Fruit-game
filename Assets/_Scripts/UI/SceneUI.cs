@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SceneUI : MonoBehaviour
 {
     [SerializeField] private WinScreen _winScreen;
-    [SerializeField] private ShopScreen _shopScreen;
+    [SerializeField] private ShopManager _shopScreen;
     [SerializeField] private TutorialScreen _tutorialScreen;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private Timer _timer;
@@ -25,20 +25,26 @@ public class SceneUI : MonoBehaviour
     {
         _timer.TimerStopped += EnableWinScreen;
         _winScreen.ShopButtonPressed += EnableShopScreen;
+        _winScreen.NextSceneButtonPressed += OnLoadNextLevelButtonPressed;
+        _shopScreen.LoadNextSceneButtonPressed += OnLoadNextLevelButtonPressed;
+        _inventory.CancelScreenButtonPressed += DisableCurrentScreen;
+        _tutorialScreen.CancelButtonPressed += DisableCurrentScreen;
         
         _tutorialButton.onClick.AddListener(EnableTutorialScreen);
         _inventoryButton.onClick.AddListener(EnableInventory);
-        _tutorialScreen.CancelButtonPressed += DisableCurrentScreen;
     }
 
     private void OnDisable()
     {
         _timer.TimerStopped -= EnableWinScreen;
         _winScreen.ShopButtonPressed -= EnableShopScreen;
+        _winScreen.NextSceneButtonPressed -= OnLoadNextLevelButtonPressed;
+        _shopScreen.LoadNextSceneButtonPressed -= OnLoadNextLevelButtonPressed;
+        _inventory.CancelScreenButtonPressed -= DisableCurrentScreen;
+        _tutorialScreen.CancelButtonPressed -= DisableCurrentScreen;
         
         _tutorialButton.onClick.RemoveListener(EnableTutorialScreen);
         _inventoryButton.onClick.RemoveListener(EnableInventory);
-        _tutorialScreen.CancelButtonPressed -= DisableCurrentScreen;
     }
 
     private void EnableWinScreen()

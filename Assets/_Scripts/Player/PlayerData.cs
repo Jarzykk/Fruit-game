@@ -76,7 +76,6 @@ public class PlayerData : MonoBehaviour
     {
         _playersMoney = _importantSceneObjects.PlayersMoney.MoneyAmount;
         Save();
-        Debug.Log("Saving player money");
     }
 
     private void Load()
@@ -88,18 +87,11 @@ public class PlayerData : MonoBehaviour
         if (saveData.purchasedSprites.Count == 0 || saveData.purchasedSprites == null)
         {
             _purchasedSprites.Add(_defaultSprite);
-        }
-        else
-        {
-            _purchasedSprites = saveData.purchasedSprites;
-        }
-
-        if (saveData.CurrentBasketSprite == null)
-        {
             _currentBasketBasketSprite = _defaultSprite;
         }
         else
         {
+            _purchasedSprites = saveData.purchasedSprites;
             _currentBasketBasketSprite = saveData.CurrentBasketSprite;
         }
 

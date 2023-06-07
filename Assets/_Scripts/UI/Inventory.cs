@@ -3,26 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Inventory : UIScreen
 {
     [SerializeField] private ImportantSceneObjects _importantSceneObjects;
     [SerializeField] private InventoryItem _inventoryItemTemplate;
     [SerializeField] private Transform _conteiner;
+    [SerializeField] private Button _cancelScreenButton;
 
     private List<InventoryItem> _inventoryItems = new List<InventoryItem>();
 
     public event UnityAction<Sprite> EquipButtonPressed;
+    public event UnityAction CancelScreenButtonPressed;
 
     private void OnEnable()
     {
         _importantSceneObjects.PlayerData.DataLoaded += LoadItems;
+        _cancelScreenButton.onClick.AddListener(OnCancelScreenButtonPressed);
         
         SetBuyButtonsInteractability();
     }
 
     private void OnDisable()
     {
+        _cancelScreenButton.onClick.RemoveListener(OnCancelScreenButtonPressed);
+        
         UnsubscribeFromEquipButtons();
         _importantSceneObjects.PlayerData.DataLoaded -= LoadItems;
     }
@@ -75,5 +81,10 @@ public class Inventory : UIScreen
         Debug.Log("Pressed");
         EquipButtonPressed?.Invoke(sprite);
         SetBuyButtonsInteractability();
+    }
+
+    private void OnCancelScreenButtonPressed()
+    {
+        CancelScreenButtonPressed?.Invoke();;
     }
 }
