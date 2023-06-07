@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -26,6 +27,12 @@ public class PlayerData : MonoBehaviour
     public event UnityAction DataLoaded;
     public event UnityAction<Sprite> CurrentSpriteChanged;
 
+    private void Awake()
+    {
+        Load();
+        //Save();
+    }
+
     private void OnEnable()
     {
         _importantSceneObjects.ShopManager.ItemPurchased += AddItemPurchasedBasketItem;
@@ -40,12 +47,6 @@ public class PlayerData : MonoBehaviour
         _importantSceneObjects.Timer.TimerStopped -= SavePlayerMoney;
         _importantSceneObjects.ShopManager.Purchased -= SavePlayerMoney;
         _importantSceneObjects.Inventory.EquipButtonPressed -= ChageCurrentSprite;
-    }
-
-    private void Start()
-    {
-        Load();
-        //Save();
     }
 
     private void AddItemPurchasedBasketItem(Sprite sprite)
@@ -73,8 +74,9 @@ public class PlayerData : MonoBehaviour
 
     private void SavePlayerMoney()
     {
-        _playersMoney = _importantSceneObjects.PlayersBasket.FruitsCollectedAmount;
+        _playersMoney = _importantSceneObjects.PlayersMoney.MoneyAmount;
         Save();
+        Debug.Log("Saving player money");
     }
 
     private void Load()
@@ -85,7 +87,7 @@ public class PlayerData : MonoBehaviour
 
         if (saveData.purchasedSprites.Count == 0 || saveData.purchasedSprites == null)
         {
-            AddItemPurchasedBasketItem(_defaultSprite);
+            _purchasedSprites.Add(_defaultSprite);
         }
         else
         {
@@ -106,13 +108,18 @@ public class PlayerData : MonoBehaviour
 
     private void Save()
     {
+        foreach (var sprite in _purchasedSprites)
+        {
+            Debug.Log(sprite.name);
+        }
+        
         SaveSystem.Save(_saveKey, GetSaveSnapshot());
     }
 
     private void ChageCurrentSprite(Sprite sprite)
     {
         _currentBasketBasketSprite = sprite;
-        
+        //Save();
         CurrentSpriteChanged?.Invoke(sprite);
     }
 

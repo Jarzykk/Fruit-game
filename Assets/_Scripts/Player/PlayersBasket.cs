@@ -33,6 +33,11 @@ public class PlayersBasket : MonoBehaviour, IFruitDisabler
         _importantSceneObjects.Timer.TimerStopped -= OnTimerStopped;
     }
 
+    private void Start()
+    {
+        SetLoadedSprite();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out Fruit fruit))
@@ -60,6 +65,7 @@ public class PlayersBasket : MonoBehaviour, IFruitDisabler
     private void SetLoadedSprite()
     {
         _spriteRenderer.sprite = _importantSceneObjects.PlayerData.CurrentBasketSprite;
+        Debug.Log("SetLoaded");
     }
 
     private void OnTimerStopped()

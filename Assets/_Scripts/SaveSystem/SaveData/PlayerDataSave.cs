@@ -12,7 +12,7 @@ public class PlayerDataSave
 
     public PlayerDataSave()
     {
-        purchasedSprites = null;
+        purchasedSprites = new List<Sprite>();
         CurrentBasketSprite = null;
         MoneyAmount = 0;
     }

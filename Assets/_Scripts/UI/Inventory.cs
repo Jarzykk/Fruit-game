@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Inventory : MonoBehaviour
+public class Inventory : UIScreen
 {
     [SerializeField] private ImportantSceneObjects _importantSceneObjects;
     [SerializeField] private InventoryItem _inventoryItemTemplate;
