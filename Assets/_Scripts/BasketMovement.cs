@@ -49,8 +49,7 @@ public class BasketMovement : MonoBehaviour
     private void Move()
     {
         Vector3 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-
-        //transform.Translate(new Vector3(mousePosition.x, 0, 0) * (_speed * Time.deltaTime));
+        
         transform.position += (new Vector3(mousePosition.x - transform.position.x, 0, 0)) * (_speed * Time.deltaTime);
     }
 }
