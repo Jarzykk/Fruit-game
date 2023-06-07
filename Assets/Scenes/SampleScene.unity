@@ -283,8 +283,8 @@ MonoBehaviour:
   OnSwipe:
     m_PersistentCalls:
       m_Calls: []
-  _sensetivity: 15
-  _continuousDetection: 1
+  _sensetivity: 50
+  _continuousDetection: 0
   _swipeDetectionMode: 0
 --- !u!4 &441894573
 Transform:
@@ -299,7 +299,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &441894574
 MonoBehaviour:
@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 1683288422}
   - component: {fileID: 1683288424}
   - component: {fileID: 1683288423}
+  - component: {fileID: 1683288425}
   m_Layer: 0
   m_Name: PlayerBasket
   m_TagString: Untagged
@@ -676,7 +677,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1683288422
 MonoBehaviour:
@@ -762,6 +763,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.6387048, y: 2.0797408}
   m_EdgeRadius: 0
+--- !u!114 &1683288425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683288419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308d1d38f9e2d1b46a6764fe564c8e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _importantSceneObjects: {fileID: 2062038262}
 --- !u!1 &1882564357
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,6 +904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2062038261}
+  - component: {fileID: 2062038262}
   m_Layer: 0
   m_Name: ImportantSceneObjects
   m_TagString: Untagged
@@ -909,5 +925,19 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2062038262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062038260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213a118af61390645af496e9a8ea6ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _swipeControlls: {fileID: 441894574}
+  _playersBusket: {fileID: 1683288422}
