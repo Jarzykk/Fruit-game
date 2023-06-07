@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd69fcabdaef10143b3e26756829d47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _templateToSpawn: {fileID: 2000857496759344172, guid: b913b157af30a2b4893cb56d1a685029, type: 3}
+  _templateToSpawn: {fileID: -290539500005885650, guid: b913b157af30a2b4893cb56d1a685029, type: 3}
   _spawnPoints:
   - {fileID: 170745239}
   - {fileID: 1504892993}
@@ -352,7 +352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330902059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 7.67, z: -9.952822}
+  m_LocalPosition: {x: 0, y: 7.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -383,7 +383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503066321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 6.04, z: -9.952822}
+  m_LocalPosition: {x: 0, y: 6.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 1882564359}
   - component: {fileID: 1882564358}
   - component: {fileID: 1882564360}
+  - component: {fileID: 1882564361}
   m_Layer: 0
   m_Name: FruitsDisabler
   m_TagString: Untagged
@@ -529,3 +530,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1882564361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882564357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74cfeb67357e9b49b78a7750304ff56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

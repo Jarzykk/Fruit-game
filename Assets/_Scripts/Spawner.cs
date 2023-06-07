@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _templateToSpawn;
+    [SerializeField] private Fruit _templateToSpawn;
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private float _spawnRate;
 
