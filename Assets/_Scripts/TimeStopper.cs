@@ -11,6 +11,8 @@ public class TimeStopper : MonoBehaviour
     {
         _importantSceneObjects.SceneUI.ScreenOpened += StopTime;
         _importantSceneObjects.SceneUI.ScreenClosed += UnstopTime;
+        
+        Time.timeScale = 1;
     }
 
     private void OnDisable()
