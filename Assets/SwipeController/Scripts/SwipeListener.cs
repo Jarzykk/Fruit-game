@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -84,7 +84,7 @@ namespace GG.Infrastructure.Utils.Swipe
                 CheckSwipe();
             }
 
-            if (_continuousDetection == false)
+            if (_continuousDetection == false || _continuousDetection == true)
             {
                 CheckSwipeCancellation();
             }
@@ -94,7 +94,7 @@ namespace GG.Infrastructure.Utils.Swipe
         {
             if (Input.GetMouseButtonUp(0))
             {
-
+                OnSwipeCancelled?.Invoke();
                 if (_waitForSwipe)
                 {
                     OnSwipeCancelled?.Invoke();
