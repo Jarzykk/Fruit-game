@@ -20,6 +20,8 @@ public class SceneUI : MonoBehaviour
     public ImportantSceneObjects ImportantSceneObjects => _importantSceneObjects;
     
     public event UnityAction LoadNextSceneButtonPressed;
+    public event UnityAction NotEndLevelScreenOpened;
+    public event UnityAction NotEndlevelScreenClosed;
 
     private void OnEnable()
     {
@@ -69,6 +71,7 @@ public class SceneUI : MonoBehaviour
 
         _currentOpenScreen = _inventory;
         _inventory.gameObject.SetActive(true);
+        NotEndLevelScreenOpened?.Invoke();
     }
 
     private void EnableTutorialScreen()
@@ -77,12 +80,16 @@ public class SceneUI : MonoBehaviour
 
         _currentOpenScreen = _tutorialScreen;
         _tutorialScreen.gameObject.SetActive(true);
+        NotEndLevelScreenOpened?.Invoke();
     }
 
     private void DisableCurrentScreen()
     {
-        if(_currentOpenScreen != null)
-            _currentOpenScreen.gameObject.SetActive(false);
+        if (_currentOpenScreen == null)
+            return;
+        
+        _currentOpenScreen.gameObject.SetActive(false);
+        NotEndlevelScreenClosed?.Invoke();
     }
 
     private void OnLoadNextLevelButtonPressed()

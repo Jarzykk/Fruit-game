@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private float _timeLimit;
     [SerializeField] private TMP_Text _timerText;
+    [SerializeField] private SceneUI _sceneUI;
 
     private float _secondsCount = 0;
     private int _minutes;

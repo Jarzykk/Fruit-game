@@ -10,6 +10,7 @@ public class ImportantSceneObjects : MonoBehaviour
     [SerializeField] private ShopManager _shopManager;
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private Inventory _inventory;
+    [SerializeField] private SceneUI _sceneUI;
 
     public SwipeControlls SwipeControlls => _swipeControlls;
     public PlayersBasket PlayersBasket => playersBasket;
@@ -18,4 +19,5 @@ public class ImportantSceneObjects : MonoBehaviour
     public ShopManager ShopManager => _shopManager;
     public PlayerData PlayerData => _playerData;
     public Inventory Inventory => _inventory;
+    public SceneUI SceneUI => _sceneUI;
 }
