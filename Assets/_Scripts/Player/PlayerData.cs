@@ -36,16 +36,14 @@ public class PlayerData : MonoBehaviour
     private void OnEnable()
     {
         _importantSceneObjects.ShopManager.ItemPurchased += AddItemPurchasedBasketItem;
-        _importantSceneObjects.Timer.TimerStopped += SavePlayerMoney;
-        _importantSceneObjects.ShopManager.Purchased += SavePlayerMoney;
+        _importantSceneObjects.PlayersMoney.MoneyAmountChanged += SavePlayerMoney;
         _importantSceneObjects.Inventory.EquipButtonPressed += ChageCurrentSprite;
     }
 
     private void OnDisable()
     {
         _importantSceneObjects.ShopManager.ItemPurchased -= AddItemPurchasedBasketItem;
-        _importantSceneObjects.Timer.TimerStopped -= SavePlayerMoney;
-        _importantSceneObjects.ShopManager.Purchased -= SavePlayerMoney;
+        _importantSceneObjects.PlayersMoney.MoneyAmountChanged -= SavePlayerMoney;
         _importantSceneObjects.Inventory.EquipButtonPressed -= ChageCurrentSprite;
     }
 
@@ -72,9 +70,9 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    private void SavePlayerMoney()
+    private void SavePlayerMoney(int money)
     {
-        _playersMoney = _importantSceneObjects.PlayersMoney.MoneyAmount;
+        _playersMoney = money;
         Save();
     }
 

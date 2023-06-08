@@ -26,6 +26,11 @@ public class PlayersMoney : MonoBehaviour
         _importantSceneObjects.PlayerData.DataLoaded -= SetMoney;
     }
 
+    private void Start()
+    {
+        SetMoney();
+    }
+
     public void AddMoney(int amount)
     {
         _moneyAmount += amount;
