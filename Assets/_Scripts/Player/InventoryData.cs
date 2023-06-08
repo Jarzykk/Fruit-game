@@ -22,8 +22,8 @@ public class InventoryData : MonoBehaviour
     
     private void Awake()
     {
-        Load();
-        //Save();
+        //Load();
+        Save();
     }
 
     private void OnEnable()
