@@ -15,7 +15,7 @@ public class ShopManager : ShopScreen
     [SerializeField] private ImportantSceneObjects _importantSceneObjects;
     [FormerlySerializedAs("LoadNextSceneButton")] [SerializeField] private Button _loadNextSceneButton;
     
-    private ShopBasketItemTemplate[] _shopItems;
+    private List<ShopBasketItemTemplate> _shopGoods = new List<ShopBasketItemTemplate>();
 
     public event UnityAction<Sprite> ItemPurchased;
     public event UnityAction Purchased;
@@ -23,11 +23,12 @@ public class ShopManager : ShopScreen
 
     private void Awake()
     {
-        LoadItems();
+        //LoadItems();
     }
 
     private void OnEnable()
     {
+        LoadItems();
         SubscribeToItemsBuyButton();
         SetBuyButtonsInteractability();
         
@@ -43,18 +44,29 @@ public class ShopManager : ShopScreen
 
     private void LoadItems()
     {
-        _shopItems = new ShopBasketItemTemplate[_itemsToSell.Length];
-        
         for (int i = 0; i < _itemsToSell.Length; i++)
         {
-            _shopItems[i] = Instantiate(shopShopBasketItemTemplate, _conteiner);
-            _shopItems[i].SetValues(_itemsToSell[i].Title, _itemsToSell[i].Price, _itemsToSell[i].Sprite);
+            bool playerHasItem = false;
+            
+            for (int j = 0; j < _importantSceneObjects.PlayerData.PurchasedSprites.Count; j++)
+            {
+                if (_importantSceneObjects.PlayerData.PurchasedSprites[j].name == _itemsToSell[i].Sprite.name)
+                {
+                    playerHasItem = true;
+                }
+            }
+
+            if (playerHasItem == false)
+            {
+                _shopGoods.Add(Instantiate(shopShopBasketItemTemplate, _conteiner));
+                _shopGoods[i].SetValues(_itemsToSell[i].Title, _itemsToSell[i].Price, _itemsToSell[i].Sprite);
+            }
         }
     }
 
     private void SubscribeToItemsBuyButton()
     {
-        foreach (var shopItem in _shopItems)
+        foreach (var shopItem in _shopGoods)
         {
             shopItem.BuyButtonPressed += OnBuyButtonPressed;
         }
@@ -62,7 +74,7 @@ public class ShopManager : ShopScreen
     
     private void UnsubscribeFromItemsBuyButton()
     {
-        foreach (var shopItem in _shopItems)
+        foreach (var shopItem in _shopGoods)
         {
             shopItem.BuyButtonPressed -= OnBuyButtonPressed;
         }
@@ -70,7 +82,7 @@ public class ShopManager : ShopScreen
 
     private void SetBuyButtonsInteractability()
     {
-        foreach (var shopItem in _shopItems)
+        foreach (var shopItem in _shopGoods)
         {
             if(shopItem.Price > _importantSceneObjects.PlayersMoney.MoneyAmount)
                 shopItem.SetBuyButtonInteractability(false);
