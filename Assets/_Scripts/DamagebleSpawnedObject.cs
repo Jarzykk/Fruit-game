@@ -14,7 +14,6 @@ public class DamagebleSpawnedObject : SpawnedObject
         base.SetDataFromObject(spawnedScriptableObject);
         DamageableSpawnedScriptableObject dataObject = (DamageableSpawnedScriptableObject)spawnedScriptableObject;
         _damage = dataObject.Damage;
-        Debug.Log(_damage);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -16,6 +16,7 @@ public class ImportantSceneObjects : MonoBehaviour
     [SerializeField] private PlayersBasket playersBasket;
     [SerializeField] private PlayersMoney _playersMoney;
     [SerializeField] private PlayerData _playerData;
+    [SerializeField] private InventoryData _inventoryData;
     [SerializeField] private Health _health;
 
     public SwipeControlls SwipeControlls => _swipeControlls;
@@ -28,5 +29,6 @@ public class ImportantSceneObjects : MonoBehaviour
     public PlayersBasket PlayersBasket => playersBasket;
     public PlayersMoney PlayersMoney => _playersMoney;
     public PlayerData PlayerData => _playerData;
+    public InventoryData InventoryData => _inventoryData;
     public Health Health => _health;
 }

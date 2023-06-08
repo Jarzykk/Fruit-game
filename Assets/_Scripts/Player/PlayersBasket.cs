@@ -21,15 +21,15 @@ public class PlayersBasket : MonoBehaviour
 
     private void OnEnable()
     {
-        _importantSceneObjects.PlayerData.DataLoaded += SetLoadedSprite;
-        _importantSceneObjects.PlayerData.CurrentSpriteChanged += SetBasketSprite;
+        _importantSceneObjects.InventoryData.DataLoaded += SetLoadedSprite;
+        _importantSceneObjects.InventoryData.CurrentSpriteChanged += SetBasketSprite;
         _importantSceneObjects.Timer.TimerStopped += OnTimerStopped;
     }
 
     private void OnDisable()
     {
-        _importantSceneObjects.PlayerData.DataLoaded -= SetLoadedSprite;
-        _importantSceneObjects.PlayerData.CurrentSpriteChanged -= SetBasketSprite;
+        _importantSceneObjects.InventoryData.DataLoaded -= SetLoadedSprite;
+        _importantSceneObjects.InventoryData.CurrentSpriteChanged -= SetBasketSprite;
         _importantSceneObjects.Timer.TimerStopped -= OnTimerStopped;
     }
 
@@ -58,7 +58,7 @@ public class PlayersBasket : MonoBehaviour
 
     private void SetLoadedSprite()
     {
-        _spriteRenderer.sprite = _importantSceneObjects.PlayerData.CurrentBasketSprite;
+        _spriteRenderer.sprite = _importantSceneObjects.InventoryData.CurrentBasketSprite;
     }
 
     private void OnTimerStopped()

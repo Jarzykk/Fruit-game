@@ -10,10 +10,10 @@ using UnityEngine.UI;
 public class ShopManager : ShopScreen
 {
     [SerializeField] private ShopScriptableObject[] _itemsToSell;
-    [FormerlySerializedAs("shopBasketItemTemplate")] [SerializeField] private ShopBasketItemTemplate shopShopBasketItemTemplate;
+    [SerializeField] private ShopBasketItemTemplate shopShopBasketItemTemplate;
     [SerializeField] private Transform _conteiner;
     [SerializeField] private ImportantSceneObjects _importantSceneObjects;
-    [FormerlySerializedAs("LoadNextSceneButton")] [SerializeField] private Button _loadNextSceneButton;
+    [SerializeField] private Button _loadNextSceneButton;
     
     private List<ShopBasketItemTemplate> _shopGoods = new List<ShopBasketItemTemplate>();
 
@@ -48,9 +48,9 @@ public class ShopManager : ShopScreen
         {
             bool playerHasItem = false;
             
-            for (int j = 0; j < _importantSceneObjects.PlayerData.PurchasedSprites.Count; j++)
+            for (int j = 0; j < _importantSceneObjects.InventoryData.PurchasedSprites.Count; j++)
             {
-                if (_importantSceneObjects.PlayerData.PurchasedSprites[j].name == _itemsToSell[i].Sprite.name)
+                if (_importantSceneObjects.InventoryData.PurchasedSprites[j].name == _itemsToSell[i].Sprite.name)
                 {
                     playerHasItem = true;
                 }

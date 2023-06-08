@@ -42,10 +42,10 @@ public class Inventory : UIScreen
 
     private void LoadItems()
     {
-        for (int i = 0; i < _importantSceneObjects.PlayerData.PurchasedSprites.Count; i++)
+        for (int i = 0; i < _importantSceneObjects.InventoryData.PurchasedSprites.Count; i++)
         {
             _inventoryItems.Add(Instantiate(_inventoryItemTemplate, _conteiner));
-            _inventoryItems[i].SetSprite(_importantSceneObjects.PlayerData.PurchasedSprites[i]);
+            _inventoryItems[i].SetSprite(_importantSceneObjects.InventoryData.PurchasedSprites[i]);
         }
     }
     
@@ -53,7 +53,7 @@ public class Inventory : UIScreen
     {
         foreach (var inventoryItem in _inventoryItems)
         {
-            if(inventoryItem.Sprite == _importantSceneObjects.PlayerData.CurrentBasketSprite)
+            if(inventoryItem.Sprite == _importantSceneObjects.InventoryData.CurrentBasketSprite)
                 inventoryItem.SetEquipButtonInteractability(false);
             else
                 inventoryItem.SetEquipButtonInteractability(true);
