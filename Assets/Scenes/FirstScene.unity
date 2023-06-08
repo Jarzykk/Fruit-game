@@ -379,6 +379,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -93.91431
       objectReference: {fileID: 0}
+    - target: {fileID: 2956305310126514710, guid: 9cdc8d05bb86b3e479a61a693f34f08d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3473978832283844602, guid: 9cdc8d05bb86b3e479a61a693f34f08d, type: 3}
       propertyPath: m_Name
       value: SceneObjects
