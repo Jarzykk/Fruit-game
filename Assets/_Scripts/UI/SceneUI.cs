@@ -10,6 +10,7 @@ public class SceneUI : MonoBehaviour
     [SerializeField] private ShopManager _shopScreen;
     [SerializeField] private TutorialScreen _tutorialScreen;
     [SerializeField] private Inventory _inventory;
+    [SerializeField] private LooseScreen _looseScreen;
     [SerializeField] private Timer _timer;
     [SerializeField] private ImportantSceneObjects _importantSceneObjects;
     [SerializeField] private Button _tutorialButton;
@@ -20,15 +21,17 @@ public class SceneUI : MonoBehaviour
     public ImportantSceneObjects ImportantSceneObjects => _importantSceneObjects;
     
     public event UnityAction LoadNextSceneButtonPressed;
-    public event UnityAction NotEndLevelScreenOpened;
-    public event UnityAction NotEndlevelScreenClosed;
+    public event UnityAction ScreenOpened;
+    public event UnityAction ScreenClosed;
 
     private void OnEnable()
     {
         _timer.TimerStopped += EnableWinScreen;
+        _importantSceneObjects.Health.Died += EnableLooseScreen;
         _winScreen.ShopButtonPressed += EnableShopScreen;
         _winScreen.NextSceneButtonPressed += OnLoadNextLevelButtonPressed;
         _shopScreen.LoadNextSceneButtonPressed += OnLoadNextLevelButtonPressed;
+        _looseScreen.ContinueButtonPressed += OnLoadNextLevelButtonPressed;
         _inventory.CancelScreenButtonPressed += DisableCurrentScreen;
         _tutorialScreen.CancelButtonPressed += DisableCurrentScreen;
         
@@ -39,9 +42,11 @@ public class SceneUI : MonoBehaviour
     private void OnDisable()
     {
         _timer.TimerStopped -= EnableWinScreen;
+        _importantSceneObjects.Health.Died -= EnableLooseScreen;
         _winScreen.ShopButtonPressed -= EnableShopScreen;
         _winScreen.NextSceneButtonPressed -= OnLoadNextLevelButtonPressed;
         _shopScreen.LoadNextSceneButtonPressed -= OnLoadNextLevelButtonPressed;
+        _looseScreen.ContinueButtonPressed -= OnLoadNextLevelButtonPressed;
         _inventory.CancelScreenButtonPressed -= DisableCurrentScreen;
         _tutorialScreen.CancelButtonPressed -= DisableCurrentScreen;
         
@@ -51,10 +56,26 @@ public class SceneUI : MonoBehaviour
 
     private void EnableWinScreen()
     {
+        if(_currentOpenScreen == _looseScreen)
+            return;
+        
         DisableCurrentScreen();
         
         _currentOpenScreen = _winScreen;
         _winScreen.gameObject.SetActive(true);
+        ScreenOpened?.Invoke();
+    }
+
+    private void EnableLooseScreen()
+    {
+        if(_currentOpenScreen == _winScreen)
+            return;
+        
+        DisableCurrentScreen();
+        
+        _currentOpenScreen = _winScreen;
+        _looseScreen.gameObject.SetActive(true);
+        ScreenOpened?.Invoke();
     }
 
     private void EnableShopScreen()
@@ -63,6 +84,7 @@ public class SceneUI : MonoBehaviour
         
         _currentOpenScreen = _shopScreen;
         _shopScreen.gameObject.SetActive(true);
+        ScreenOpened?.Invoke();
     }
 
     private void EnableInventory()
@@ -71,7 +93,7 @@ public class SceneUI : MonoBehaviour
 
         _currentOpenScreen = _inventory;
         _inventory.gameObject.SetActive(true);
-        NotEndLevelScreenOpened?.Invoke();
+        ScreenOpened?.Invoke();
     }
 
     private void EnableTutorialScreen()
@@ -80,7 +102,7 @@ public class SceneUI : MonoBehaviour
 
         _currentOpenScreen = _tutorialScreen;
         _tutorialScreen.gameObject.SetActive(true);
-        NotEndLevelScreenOpened?.Invoke();
+        ScreenOpened?.Invoke();
     }
 
     private void DisableCurrentScreen()
@@ -89,7 +111,7 @@ public class SceneUI : MonoBehaviour
             return;
         
         _currentOpenScreen.gameObject.SetActive(false);
-        NotEndlevelScreenClosed?.Invoke();
+        ScreenClosed?.Invoke();
     }
 
     private void OnLoadNextLevelButtonPressed()

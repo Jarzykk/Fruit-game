@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Fruit", menuName = "ScriptableObjects/Fruit", order = 51)]
-public class FruitScriptableObject : ScriptableObject
+[CreateAssetMenu(fileName = "CollectebleSpawned", menuName = "ScriptableObjects/ForSpawner/Collecteble", order = 51)]
+public class SpawnedScriptableObject : ScriptableObject
 {
     [SerializeField] private string _name;
     [SerializeField] private float _speed;

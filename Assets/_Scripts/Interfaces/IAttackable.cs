@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IFruitDisabler
+public interface IAttackable
 {
-    public void DisableFruit(Fruit fruit);
+    public void DealDamage();
 }

@@ -9,14 +9,14 @@ public class TimeStopper : MonoBehaviour
 
     private void OnEnable()
     {
-        _importantSceneObjects.SceneUI.NotEndLevelScreenOpened += StopTime;
-        _importantSceneObjects.SceneUI.NotEndlevelScreenClosed += UnstopTime;
+        _importantSceneObjects.SceneUI.ScreenOpened += StopTime;
+        _importantSceneObjects.SceneUI.ScreenClosed += UnstopTime;
     }
 
     private void OnDisable()
     {
-        _importantSceneObjects.SceneUI.NotEndLevelScreenOpened -= StopTime;
-        _importantSceneObjects.SceneUI.NotEndlevelScreenClosed -= UnstopTime;
+        _importantSceneObjects.SceneUI.ScreenOpened -= StopTime;
+        _importantSceneObjects.SceneUI.ScreenClosed -= UnstopTime;
     }
 
     private void StopTime()

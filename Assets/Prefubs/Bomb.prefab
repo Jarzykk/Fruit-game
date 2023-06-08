@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5453777027436491350}
   - component: {fileID: 3588540452379554057}
-  - component: {fileID: -3870113450364839179}
   - component: {fileID: 3501155475063254024}
-  - component: {fileID: 1710050878423718949}
+  - component: {fileID: 8001616519691918377}
+  - component: {fileID: 5546975934373954493}
   m_Layer: 0
-  m_Name: Fruit
+  m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2000857496759344172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: b7481a4c424715542a70ac1efc7468db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2be55834e2ff7b144a243413f2979787, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,18 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3870113450364839179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000857496759344172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f92a61c234824a14ea318a436977f2b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &3501155475063254024
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -131,10 +119,10 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.02555471, y: -0.035137907}
   serializedVersion: 2
-  m_Radius: 0.8695651
---- !u!114 &1710050878423718949
+  m_Radius: 0.50221425
+--- !u!114 &8001616519691918377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,14 +131,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2000857496759344172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fcaa921b8b6b2c4d9f92c3e24689141, type: 3}
+  m_Script: {fileID: 11500000, guid: bab027e4baefee24fabcc28a2232e9d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _dataOfObjects:
-  - {fileID: 11400000, guid: 9c5bf6585a254664da8fb91e5742c252, type: 2}
-  - {fileID: 11400000, guid: 9f9fc92b0402c3341899f028903ebac4, type: 2}
-  - {fileID: 11400000, guid: 9d29779a453b43540861a5a49f6381c8, type: 2}
-  - {fileID: 11400000, guid: e2081bbeb3af23d459c429416c37ef73, type: 2}
-  - {fileID: 11400000, guid: 30baa911bcc55734b9e6db188aaec18a, type: 2}
-  - {fileID: 11400000, guid: 4391e6ce00de4744ca5edf072c4188dd, type: 2}
-  - {fileID: 11400000, guid: 88675156b3d18a343b268b6a986ebb7d, type: 2}
+  - {fileID: 11400000, guid: 09a3f1d6451427f4f9150475e165acc5, type: 2}
+--- !u!114 &5546975934373954493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000857496759344172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92a61c234824a14ea318a436977f2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

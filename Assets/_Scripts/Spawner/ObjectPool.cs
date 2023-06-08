@@ -3,22 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] private GameObject _container;
-    [SerializeField] private int _capacity;
+    [SerializeField] protected GameObject Container;
+    [SerializeField] protected int Capacity;
 
     private List<GameObject> _pool = new List<GameObject>();
 
-    protected void Initialize(GameObject prefub)
+    protected void AddObjectToPool(GameObject prefub)
     {
-        for (int i = 0; i < _capacity; i++)
-        {
-            GameObject spawned = Instantiate(prefub, _container.transform);
-            spawned.SetActive(false);
-            _pool.Add(spawned);
-        }
+        GameObject spawned = Instantiate(prefub, Container.transform);
+        spawned.SetActive(false);
+        _pool.Add(spawned);
     }
 
     protected bool TryGetObjectFromPool(out GameObject result)

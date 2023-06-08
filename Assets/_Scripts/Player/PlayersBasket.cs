@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class PlayersBasket : MonoBehaviour, IFruitDisabler
+public class PlayersBasket : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private ImportantSceneObjects _importantSceneObjects;
@@ -40,21 +40,15 @@ public class PlayersBasket : MonoBehaviour, IFruitDisabler
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Fruit fruit))
+        if (other.TryGetComponent<ICollecteable>(out ICollecteable collecteable))
         {
             if(_canCollect == false)
                 return;
             
             _fruitsCollectedAmount++;
             FruitCollected?.Invoke();
-            DisableFruit(fruit);
+            collecteable.CollectMe();
         }
-    }
-
-    public void DisableFruit(Fruit fruit)
-    {
-        FruitCollected?.Invoke();
-        fruit.DisableFruit();
     }
 
     public void SetBasketSprite(Sprite sprite)
