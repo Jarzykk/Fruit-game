@@ -22,8 +22,8 @@ public class InventoryData : MonoBehaviour
     
     private void Awake()
     {
-        Load();
-        //Save();
+        //Load();
+        Save();
     }
 
     private void OnEnable()
@@ -84,18 +84,13 @@ public class InventoryData : MonoBehaviour
 
     private void Save()
     {
-        foreach (var sprite in _purchasedSprites)
-        {
-            Debug.Log(sprite.name);
-        }
-        
         SaveSystem.Save(_saveKey, GetSaveSnapshot());
     }
 
     private void ChageCurrentSprite(Sprite sprite)
     {
         _currentBasketBasketSprite = sprite;
-        //Save();
+        Save();
         CurrentSpriteChanged?.Invoke(sprite);
     }
 

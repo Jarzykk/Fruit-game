@@ -18,7 +18,6 @@ public class ShopManager : ShopScreen
     private List<ShopBasketItemTemplate> _shopGoods = new List<ShopBasketItemTemplate>();
 
     public event UnityAction<Sprite> ItemPurchased;
-    public event UnityAction Purchased;
     public event UnityAction LoadNextSceneButtonPressed;
 
     private void Awake()
@@ -100,9 +99,10 @@ public class ShopManager : ShopScreen
     {
         if (_importantSceneObjects.PlayersMoney.TryTakeMoney(shopShopBasketItem.Price))
         {
-            SetBuyButtonsInteractability();
             ItemPurchased?.Invoke(shopShopBasketItem.Sprite);
-            Purchased?.Invoke();
+            _shopGoods.Remove(shopShopBasketItem);
+            Destroy(shopShopBasketItem.gameObject);
+            SetBuyButtonsInteractability();
         }
     }
 }
